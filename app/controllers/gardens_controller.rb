@@ -1,5 +1,5 @@
 class GardensController < ApplicationController
-  before_action :set_garden, only: %i[ show edit update destroy ]
+  before_action :set_garden, only: %i[show edit update destroy]
 
   # GET /gardens or /gardens.json
   def index
@@ -8,6 +8,7 @@ class GardensController < ApplicationController
 
   # GET /gardens/1 or /gardens/1.json
   def show
+    @plants = @garden.plants
   end
 
   # GET /gardens/new
@@ -16,8 +17,7 @@ class GardensController < ApplicationController
   end
 
   # GET /gardens/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /gardens or /gardens.json
   def create
@@ -25,7 +25,7 @@ class GardensController < ApplicationController
 
     respond_to do |format|
       if @garden.save
-        format.html { redirect_to garden_url(@garden), notice: "Garden was successfully created." }
+        format.html { redirect_to garden_url(@garden), notice: 'Garden was successfully created.' }
         format.json { render :show, status: :created, location: @garden }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class GardensController < ApplicationController
   def update
     respond_to do |format|
       if @garden.update(garden_params)
-        format.html { redirect_to garden_url(@garden), notice: "Garden was successfully updated." }
+        format.html { redirect_to garden_url(@garden), notice: 'Garden was successfully updated.' }
         format.json { render :show, status: :ok, location: @garden }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +52,20 @@ class GardensController < ApplicationController
     @garden.destroy
 
     respond_to do |format|
-      format.html { redirect_to gardens_url, notice: "Garden was successfully destroyed." }
+      format.html { redirect_to gardens_url, notice: 'Garden was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_garden
-      @garden = Garden.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def garden_params
-      params.require(:garden).permit(:name, :banner_url)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_garden
+    @garden = Garden.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def garden_params
+    params.require(:garden).permit(:name, :banner_url)
+  end
 end

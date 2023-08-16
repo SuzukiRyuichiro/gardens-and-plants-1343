@@ -8,3 +8,13 @@
     </div>
   </div>
 </div>
+<div class="container mt-4 d-flex flex-column gap-4">
+  <% @plants.each do |plant| %>
+    <div class="card-product">
+      <img src="<%= plant.image_url %>" />
+      <div class="card-product-infos">
+        <h2><%= plant.name %></h2>
+      </div>
+    </div>
+  <% end %>
+</div>
