@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :plants, only: %i[new create]
   end
 
-  resources :plants, only: [:destroy]
-  # route to get the new plant form
-  # to POST to save that new plant
+  resources :plants, only: [:destroy] do
+    resources :taggings, only: %i[new create]
+  end
 end
