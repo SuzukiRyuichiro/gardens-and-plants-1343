@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'taggings/new'
   resources :gardens do
     resources :plants, only: %i[new create]
   end
