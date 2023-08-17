@@ -1,2 +1,5 @@
 <h1>Taggings#new</h1>
-<p>Find me in app/views/taggings/new.html.erb</p>
+<%= simple_form_for [@plant, @tagging] do |f| %>
+  <%= f.association :tag %>
+  <%= f.submit %>
+<% end %>
